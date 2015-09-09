@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -o nounset
+set -o errexit
+
+source "${0%/*}/../share/smie/smie.sh"
+source "${0%/*}/../share/smie/cli.sh"
+
+parse_options "$@" || exit $?
+
+if [[ $do_autoload -eq 1 ]]; then
+  smie_autoload || fail "Project could not load."
+fi
+
+echo "debug: project_file=${project_file}"
+
+if [[ $do_compile -eq 1 ]]; then
+  smie_compile || fail "Compile failed."
+fi
+
+if [[ $do_validate -eq 1 ]]; then
+  smie_validate || fail "Verifying project ${project_name} failed!"
+fi
+
+if [[ $do_compile -eq 1 ]]; then
+  smie_build || fail "Building project ${project_name} failed!"
+fi
+
+
+
+# vim: filetype=sh

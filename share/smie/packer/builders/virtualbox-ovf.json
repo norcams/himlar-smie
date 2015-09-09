@@ -1,0 +1,47 @@
+{
+  "builders": [
+    {
+      "guest_additions_mode": "disable",
+      "headless": "{{user `headless`}}",
+      "http_directory": "{{user `project_path`}}/{{user `project_name`}}",
+      "name": "virtualbox-ovf",
+      "output_directory": "builds/{{build_name}}/{{user `project_name`}}/{{user `project_version`}}",
+      "shutdown_command": "{{user `shutdown_command`}}",
+      "source_path": "{{user `virtualbox_image`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_port": 22,
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_timeout": "30s",
+      "type": "virtualbox-ovf",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{user `memory`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{user `vcpu`}}"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "image"
+    }
+  ],
+  "variables": {
+    "headless": "true",
+    "memory": "1024",
+    "project_name": null,
+    "project_path": null,
+    "project_version": null,
+    "shutdown_command": null,
+    "virtualbox_image": null,
+    "ssh_password": "packer",
+    "ssh_username": "packer",
+    "vcpu": "2"
+  }
+}
+

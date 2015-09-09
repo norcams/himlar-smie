@@ -1,0 +1,10 @@
+{
+  "post-processors": [
+    {
+      "keep_input_artifact": true,
+      "output": "builds/vagrant/{{user `project_name`}}/{{user `project_version`}}/{{.Provider}}.box",
+      "type": "vagrant"
+    }
+  ]
+}
+

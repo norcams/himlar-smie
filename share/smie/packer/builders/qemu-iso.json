@@ -1,0 +1,59 @@
+{
+  "builders": [
+    {
+      "boot_wait": "5s",
+      "boot_command": [
+        "{{user `boot_command`}}",
+        "http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `os_template`}}",
+        "<enter>"
+      ],
+      "disk_image": "false",
+      "disk_interface": "virtio",
+      "disk_size": "{{user `disk_size`}}",
+      "format": "{{user `format`}}",
+      "headless": "{{user `headless`}}",
+      "http_directory": "{{user `project_path`}}/{{user `project_name`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_urls": [
+        "{{user `iso_local`}}",
+        "{{user `iso_url`}}"
+      ],
+      "name": "qemu-iso",
+      "output_directory": "builds/{{build_name}}/{{user `project_name`}}/{{user `project_version`}}",
+      "shutdown_command": "{{user `shutdown_command`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_port": 22,
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_wait_timeout": "1800s",
+      "type": "qemu",
+      "qemuargs": [
+        [ "-m", "{{user `memory`}}M" ],
+        [ "-smp", "{{user `vcpu`}}" ],
+        [ "-cpu", "host" ]
+      ],
+      "vm_name": "image.{{user `format`}}"
+    }
+  ],
+  "variables": {
+    "boot_command": null,
+    "disk_size": "40960",
+    "format": "qcow2",
+    "headless": "true",
+    "iso_checksum": null,
+    "iso_checksum_type": null,
+    "iso_local": null,
+    "iso_url": null,
+    "memory": "1024",
+    "mirror": null,
+    "os_template": null,
+    "project_name": null,
+    "project_path": null,
+    "project_version": null,
+    "shutdown_command": null,
+    "ssh_password": "packer",
+    "ssh_username": "packer",
+    "vcpu": "2"
+  }
+}
+

@@ -1,0 +1,69 @@
+{
+  "builders": [
+    {
+      "boot_wait": "5s",
+      "boot_command": [
+        "{{user `boot_command`}}",
+        "http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `os_template`}}",
+        "<enter>"
+      ],
+      "disk_size": "{{user `disk_size`}}",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_os_type": "{{user `guest_os_type`}}",
+      "hard_drive_interface": "sata",
+      "headless": "{{user `headless`}}",
+      "http_directory": "{{user `project_path`}}/{{user `project_name`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_urls": [
+        "{{user `iso_local`}}",
+        "{{user `iso_url`}}"
+      ],
+      "name": "virtualbox-iso",
+      "output_directory": "builds/{{build_name}}/{{user `project_name`}}/{{user `project_version`}}",
+      "shutdown_command": "{{user `shutdown_command`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_port": 22,
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_wait_timeout": "1800s",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{user `memory`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{user `vcpu`}}"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "image"
+    }
+  ],
+  "variables": {
+    "boot_command": null,
+    "disk_size": "40960",
+    "guest_os_type": "Linux_64",
+    "headless": "true",
+    "iso_checksum": null,
+    "iso_checksum_type": null,
+    "iso_local": null,
+    "iso_url": null,
+    "memory": "1024",
+    "mirror": null,
+    "os_template": null,
+    "project_name": null,
+    "project_path": null,
+    "project_version": null,
+    "shutdown_command": null,
+    "ssh_password": "packer",
+    "ssh_username": "packer",
+    "vcpu": "2"
+  }
+}
+

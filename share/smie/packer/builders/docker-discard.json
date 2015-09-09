@@ -1,0 +1,19 @@
+{
+  "builders": [
+    {
+      "discard": true,
+      "image": "{{user `docker_image`}}",
+      "name": "docker-discard",
+      "pull": "{{user `docker_pull`}}",
+      "type": "docker"
+    }
+  ],
+  "variables": {
+    "docker_image": null,
+    "docker_pull": "false",
+    "project_name": null,
+    "project_path": null,
+    "project_version": null
+  }
+}
+

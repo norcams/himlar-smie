@@ -1,0 +1,17 @@
+{
+  "provisioners": [
+    {
+      "order": "03",
+      "type": "shell",
+      "environment_vars": [
+        "OS_NAME={{user `os_name`}}",
+        "OS_VERSION={{user `os_version`}}",
+        "PROJECT_NAME={{user `project_name`}}",
+        "PROJECT_VERSION={{user `project_version`}}",
+        "TAG=vagrant"
+      ],
+      "script": "{{user `builder_path`}}/builder/bin/include.sh"
+    }
+  ]
+}
+

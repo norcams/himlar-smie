@@ -1,0 +1,18 @@
+{
+  "builders": [
+    {
+      "ssh_host": "{{user `ssh_host`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_port": "{{user `ssh_port`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "type": "null"
+    }
+  ],
+  "variables": {
+    "ssh_host": "127.0.0.1",
+    "ssh_password": "packer",
+    "ssh_port": "22",
+    "ssh_username": "packer"
+  }
+}
+
